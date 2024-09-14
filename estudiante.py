@@ -1,10 +1,6 @@
 from curso import Curso
-class Estudiante:
-     nombre = ""
-     edad = 0
-     id_estudiante = 0
-     cursos = Curso()
 
+class Estudiante:
 
      def __init__(self, id_estudiante, nombre, edad, curso):
             self.id_estudiante= id_estudiante
@@ -16,7 +12,7 @@ class Estudiante:
           self.cursos.append(curso)
 
 
-     def mostrar_inf_estudiante(self):
+     def mostrar_info_estudiante(self):
           print("Nombre: ",self.nombre,"Edad: ",self.edad, "ID:", self.id_estudiante)
 
           if self.cursos:
@@ -25,3 +21,5 @@ class Estudiante:
 
           else:
                 print("No hay cursos agregados")
+
+
