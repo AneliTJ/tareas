@@ -1,10 +1,12 @@
-from paciente import Paciente
+from paciente.paciente import Paciente
+from typing import List
+from medico.medico import Medico
+from consulta.consulta import Consulta
 
 class Hospital:
-
-    pacientes = []
-    medicos = []
-    consultas = []
+    pacientes : List[Paciente] = []
+    medicos : List[Medico] = []
+    consultas : List[Consulta] = []
 
     def registrar_consulta(self,id_paciente, id_medico):
         if self.validar_cantidad_usuarios() == False:
@@ -28,17 +30,11 @@ class Hospital:
         menores = []
         mayores = []
         for paciente in self.pacientes:
-            if paciente.clasificar_pacientes_edad() == "menor":
+            if paciente.ano_nacimiento < 2006:
                 menores.append(paciente)
             else:
                 mayores.append(paciente)
         return menores, mayores
-
-    def validar_existencia_paciente(self,id_paciente):
-        for paciente in self.pacientes:
-            if paciente.id_paciente == id_paciente:
-                return True
-        return False
 
 
     def registrar_medico(self, medico):
@@ -48,12 +44,6 @@ class Hospital:
         print ("****Medicos en el sistema********")
         for medico in self.medicos:
             medico.mostrar_informacion_medicos()
-        
-    def validar_existencia_medico(self, id_medico):
-        for medico in self.medicos:
-            if medico.id_medico ==id_medico:
-                return True
-        return False
         
     def buscar_paciente_id(self, id_paciente):
         for paciente in self.pacientes:
@@ -93,5 +83,4 @@ class Hospital:
         if len(self.medicos)==0:
             print("No puedes registrar una consulta, no hay medicos")
             return 
-        
         
