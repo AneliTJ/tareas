@@ -1,3 +1,6 @@
+from estudiantes.estudiante import Estudiante
+from maestros.maestro import Maestro
+
 
 class Materia: 
     id_materia: str #MT {ultimos 2 digitos del nombre}{semestre}{cantidadCreditos}{numero random del 1-1000}
@@ -12,3 +15,6 @@ class Materia:
         self.descripcion = descripcion
         self.semestre=semestre
         self.creditos=creditos
+
+    def mostrar_materias(self):
+        print(f"ID de la materia: {self.id_materia}, Instructor: {self.instructor}, Descripcion: {self.descripcion}, Semestre: {self.semestre}, Creditos: {self.creditos}")
