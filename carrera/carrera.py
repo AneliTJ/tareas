@@ -7,8 +7,8 @@ from semestre.semestre import Semestre
 class Carrera:
     matricula:str
     nombre: str
-    numero_semestres : int
-    semestres : List [Semestre] = []
+    numero_semestres : int = 0
+    semestres : List [Semestre] 
 
     def __init__ (self, nombre:str):
         self.matricula = self.generar_id(nombre)
