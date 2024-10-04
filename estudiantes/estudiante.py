@@ -21,7 +21,7 @@ class Estudiante(Usuario):  #se ocupa poner entre los parentesis cual es la clas
         self.fecha_nacimiento=fecha_nacimiento
 
     def mostrar_info_estudiante(self):
-        nombre_completo = f"{self.nombre}{self.apellido}"
+        nombre_completo = f"{self.nombre} {self.apellido}"
         print (f"Numero de control: {self.numero_control},nombre completo: {nombre_completo}, curp: {self.curp}, fecha de nacimiento: {self.fecha_nacimiento}, Rol: {self.rol}")
         
         
