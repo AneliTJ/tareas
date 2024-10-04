@@ -1,13 +1,8 @@
-from paciente.paciente import Paciente
-from typing import List
-from medico.medico import Medico
-from consulta.consulta import Consulta
-
+from paciente import Paciente
 class Hospital:
-    pacientes : List[Paciente] = []
-    medicos : List[Medico] = []
-    consultas : List[Consulta] = []
-
+    pacientes = []
+    medicos = []
+    consultas = []
     def registrar_consulta(self,id_paciente, id_medico):
         if self.validar_cantidad_usuarios() == False:
             return
@@ -17,10 +12,8 @@ class Hospital:
             return 
         print ("continuamos con el registro")
     
-
     def registrar_paciente(self, paciente):
         self.pacientes.append(paciente)
-
     def mostrar_pacientes(self):
         print ("****Pacientes en el sistema********")
         for paciente in self.pacientes:
@@ -30,27 +23,34 @@ class Hospital:
         menores = []
         mayores = []
         for paciente in self.pacientes:
-            if paciente.ano_nacimiento < 2006:
+            if paciente.clasificar_pacientes_edad() == "menor":
                 menores.append(paciente)
             else:
                 mayores.append(paciente)
         return menores, mayores
-
-
+    def validar_existencia_paciente(self,id_paciente):
+        for paciente in self.pacientes:
+            if paciente.id_paciente == id_paciente:
+                return True
+        return False
     def registrar_medico(self, medico):
         self.medicos.append(medico)
-
     def mostrar_medicos(self):
         print ("****Medicos en el sistema********")
         for medico in self.medicos:
             medico.mostrar_informacion_medicos()
+        
+    def validar_existencia_medico(self, id_medico):
+        for medico in self.medicos:
+            if medico.id_medico ==id_medico:
+                return True
+        return False
         
     def buscar_paciente_id(self, id_paciente):
         for paciente in self.pacientes:
             if paciente.id_paciente == id_paciente:
                 return paciente
         return None
-
     def buscar_medico_id(self, id_medico):
         for medico in self.medicos:
             if medico.id_medico == id_medico:
@@ -64,7 +64,6 @@ class Hospital:
             print("Paciente eliminado")
         else:
             print("Paciente no encontrado")
-
     def eliminar_medico(self, id_medico):
         medico = self.buscar_medico_id(id_medico)
         if medico:
@@ -72,8 +71,6 @@ class Hospital:
             print("Médico eliminado")
         else:
             print("Médico no encontrado")
-
-
         
     def validar_cantidad_usuarios(self):
         if len(self.pacientes)==0:
@@ -82,5 +79,4 @@ class Hospital:
         
         if len(self.medicos)==0:
             print("No puedes registrar una consulta, no hay medicos")
-            return 
-        
+            return
