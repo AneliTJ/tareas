@@ -3,7 +3,10 @@ from tkinter import messagebox, ttk
 import mysql.connector
 from tkinter import *
 
- 
+def limpiar_login():
+    entry_usuario.delete(0, END)
+    entry_contraseña.delete(0, END)
+    
 def verificar_usuario():
     usuario = entry_usuario.get()
     contraseña = entry_contraseña.get()
@@ -28,9 +31,12 @@ def verificar_usuario():
             rol = usuario[5].lower()
             if rol== "administrador":
                 messagebox.showinfo("Login exitoso", f"Bienvenido {usuario[1]}")
+                limpiar_login()
                 abrir_admin_ventana()
+                
             elif rol=="usuario":
                 messagebox.showinfo("Login exitoso", f"Bienvenido {usuario[1]}")
+                limpiar_login()
                 abrir_usuario_ventana()
         else:
             messagebox.showerror("Error", "Usuario o contraseña no encontrados.")
@@ -420,12 +426,12 @@ def abrir_usuario_ventana():
     def regresar_a_login():
         root_libros.destroy()  
         root.deiconify()
+    
 
 
 root= tk.Tk()
 root.title("Login")
 root.geometry("300x200") 
-
 
 label_usuario = tk.Label(root, text="Usuario:")
 label_usuario.pack(pady=5)
@@ -436,6 +442,7 @@ label_contraseña = tk.Label(root, text="Contraseña:")
 label_contraseña.pack(pady=5)
 entry_contraseña = tk.Entry(root, width=30, show="*")
 entry_contraseña.pack(pady=5)
+
 
 btn_login = tk.Button(root, text="Login", command=verificar_usuario)
 btn_login.pack(pady=20)
